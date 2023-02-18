@@ -1,0 +1,5 @@
+C:/Users/Ваня/Documents/PlatformIO/Projects/Wifi power tcp/cmake-build-nodemcu/CMakeFiles/Production.dir
+C:/Users/Ваня/Documents/PlatformIO/Projects/Wifi power tcp/cmake-build-nodemcu/CMakeFiles/Debug.dir
+C:/Users/Ваня/Documents/PlatformIO/Projects/Wifi power tcp/cmake-build-nodemcu/CMakeFiles/Z_DUMMY_TARGET.dir
+C:/Users/Ваня/Documents/PlatformIO/Projects/Wifi power tcp/cmake-build-nodemcu/CMakeFiles/edit_cache.dir
+C:/Users/Ваня/Documents/PlatformIO/Projects/Wifi power tcp/cmake-build-nodemcu/CMakeFiles/rebuild_cache.dir

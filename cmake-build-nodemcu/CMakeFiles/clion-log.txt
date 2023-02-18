@@ -1,0 +1,4 @@
+"C:\Program Files\JetBrains\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=nodemcu -G "CodeBlocks - MinGW Makefiles" -S "C:\Users\Ваня\Documents\PlatformIO\Projects\Wifi power tcp" -B "C:\Users\Ваня\Documents\PlatformIO\Projects\Wifi power tcp\cmake-build-nodemcu"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Ваня/Documents/PlatformIO/Projects/Wifi power tcp/cmake-build-nodemcu

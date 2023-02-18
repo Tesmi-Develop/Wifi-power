@@ -1,0 +1,10 @@
+#pragma once
+
+enum HandlerId {
+  GET_POWER, //0
+  SET_POWER, //1
+  SWITCH_POWER, //2
+  ADD_ACTION_ENABLE_POWER, //3
+  ADD_ACTION_DISABLE_POWER, //4
+  GET_TASK_LIST // 5
+};
