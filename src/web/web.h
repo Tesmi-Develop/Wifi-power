@@ -30,8 +30,11 @@ std::vector<WebRequestHandler*> captiveRequestHandlers = {
       return;
     }
 
+    //EEPROMData.SSID = dataJson["SSID"].as<String>();
+    //EEPROMData.Password = dataJson["Password"].as<String>();
     EEPROMData.SSID = dataJson["SSID"].as<String>();
     EEPROMData.Password = dataJson["Password"].as<String>();
+
     dataSave();
     Serial.println("Save");
     request->send(200);

@@ -1,3 +1,4 @@
+#pragma one
 #include <ESP8266WiFi.h>
 #include <Action.h>
 #include <config.h>
@@ -6,7 +7,7 @@
 class ActionDisablePower : Action {
     public:
         ActionDisablePower(int time) : Action(time) {
-            _id = ENABLE_POWER;
+            _id = DISABLE_POWER;
         }
 
         static ActionDisablePower* Create(int time) {

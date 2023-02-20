@@ -3,4 +3,4 @@
 #include <ESPAsyncTCP.h>
 #include <vector>
 
-static std::vector<AsyncClient*> clients;
+std::vector<AsyncClient*> clients;

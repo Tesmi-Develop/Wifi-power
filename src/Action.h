@@ -1,6 +1,5 @@
 #pragma once
 #include <ESP8266WiFi.h>
-#include <vector>
 
 enum ActionId {
   ENABLE_POWER, //0
@@ -11,9 +10,44 @@ class Action {
     public:
         static std::vector<Action*> actions;
 
+        static void sendTaskListAllClients() {
+            DynamicJsonDocument dataForSend(1024);
+            DynamicJsonDocument docTasks(1024);
+            JsonArray tasks = docTasks.to<JsonArray>();
+
+            for (Action *action : Action::actions) {
+                DynamicJsonDocument jsonAction(1024);
+                jsonAction["id"] = action->_id;
+                jsonAction["time"] = (action->time - (action->currentMillis - action->startingMillis)) / 1000;
+
+                tasks.add(jsonAction);
+            }
+
+            dataForSend["tasks"] = tasks;
+            sendPackageAllClients(GET_TASK_LIST, dataForSend);
+        }
+
+        static void sendTaskList(AsyncClient *client) {
+            DynamicJsonDocument dataForSend(1024);
+            DynamicJsonDocument docTasks(1024);
+            JsonArray tasks = docTasks.to<JsonArray>();
+
+            for (Action *action : Action::actions) {
+                DynamicJsonDocument jsonAction(1024);
+                jsonAction["id"] = action->_id;
+                jsonAction["time"] = (action->time - (action->currentMillis - action->startingMillis)) / 1000;
+
+                tasks.add(jsonAction);
+            }
+
+            dataForSend["tasks"] = tasks;
+            sendPackage(client, GET_TASK_LIST, dataForSend);
+        }
+
         static void addAction(Action* action) {
             Action::actions.push_back(action);
             Serial.println("Added new action");
+            sendTaskListAllClients();
         }
 
         ActionId _id;
@@ -56,6 +90,7 @@ class Action {
                 if (position == -1) { return; }
                 
                 Action::actions.erase(Action::actions.begin() + position);
+                Action::sendTaskListAllClients();
             }
         }
 };

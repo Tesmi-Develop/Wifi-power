@@ -57,7 +57,6 @@ static std::vector<Handler*> handlers = {
 
       for (Action *action : Action::actions) {
         DynamicJsonDocument jsonAction(1024);
-        Serial.println(ENABLE_POWER);
         jsonAction["id"] = action->_id;
         jsonAction["time"] = (action->time - (action->currentMillis - action->startingMillis)) / 1000;
 
@@ -70,7 +69,6 @@ static std::vector<Handler*> handlers = {
       packageForSend["data"] = dataForSend;
 
       serializeJson(packageForSend, packageForSendString);
-      Serial.println(packageForSendString.c_str());
       client->add(packageForSendString.c_str(), packageForSendString.length());
       client->send();
     }

@@ -48,6 +48,13 @@ static void handleError(void* arg, AsyncClient* client, int8_t error) {
 
 static void handleDisconnect(void* arg, AsyncClient* client) {
 	Serial.printf("\n client %s disconnected \n", client->remoteIP().toString().c_str());
+  
+  for (size_t i = 0; i < clients.size(); i++)
+  {
+      if (clients[i] == client) {
+          clients.erase(clients.begin() + i);
+      }
+  }
 }
 
 static void handleTimeOut(void* arg, AsyncClient* client, uint32_t time) {
@@ -69,8 +76,8 @@ void ICACHE_RAM_ATTR onReset() {
   if (isRestart) { return; }
   Serial.println("Reset");
   dataReset();
-  dataSave();
-  restart();
+  Serial.println("data reseted");
+  ESP.restart();
 }
 
 void createNetwork() {
@@ -110,9 +117,12 @@ void initPins() {
 void setup() {
 	Serial.begin(9600);
 
-  initPins();
   dataInit();
+  initPins();
   dataGet(); // pull the date from the eeprom
+
+  Serial.println(EEPROMData.SSID);
+  Serial.println(EEPROMData.Password);
 
   if (EEPROMData.SSID != "" && EEPROMData.Password != "") {
     Serial.println("Run mode wifi");
